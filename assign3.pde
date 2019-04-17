@@ -298,7 +298,7 @@ void draw() {
         image(life,10+(i*70),10);
       
     }
-      if(lifes<=0){
+      if(i<=0){
        gameState = GAME_OVER;
        }
 
