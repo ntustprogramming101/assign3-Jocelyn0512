@@ -391,7 +391,7 @@ void draw() {
            
      if(rightPressed)
      {
-       idle=false; left=false; down=false; leftPressed=false; downPressed=false;  
+       idle=false; leftPressed=false; downPressed=false;  
        
        if(hogY < 1680)
        {
@@ -472,18 +472,12 @@ void keyPressed(){
   switch(keyCode){
     case DOWN:
     downPressed = true;
-    rightPressed = false;
-    leftPressed = false;
     break;
     case RIGHT:
     rightPressed = true;
-    downPressed = false;
-    leftPressed = false;
     break;
     case LEFT:
     leftPressed = true;
-    downPressed = false;
-    rightPressed = false;
     break;
   }
   }
