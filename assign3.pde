@@ -7,9 +7,11 @@ float grassHeight = 15;
 float hogSpeed = 80/16;
 float hogX = soilSize*4;
 float hogY = soilSize;
+float hogMoveY = 80;
+
 int lifes =2;
 
-boolean downPressed, downPressed2, rightPressed, leftPressed, idle, right, left;
+boolean downPressed, downPressed2, rightPressed, leftPressed, idle, right, left, down;
 
 final int GRASS_HEIGHT = 15;
 final int START_BUTTON_W = 144;
@@ -87,7 +89,7 @@ void draw() {
 				gameState = GAME_RUN;
 				mousePressed = false;
 			}
- 
+
 		}else{
 
 			image(startNormal, START_BUTTON_X, START_BUTTON_Y);
@@ -128,9 +130,19 @@ void draw() {
       else if(limit >= 1280 && limit < 1440)
        image(soilImg4,x,y-hogY);
       else if(limit >= 1440 && limit < 1600)
-       image(soilImg4,x,y-hogY);
+      {
+        if(hogY < 1680)
+        image(soilImg4,x,y - hogY);
+        else
+         image(soilImg4,x,y - 1680);
+      }
       else if(limit >= 1600 && limit <= 2160)
-       image(soilImg5,x,y-hogY);
+      {
+        if(hogY < 1680)
+        image(soilImg5,x,y - hogY);
+        else
+         image(soilImg5,x,y - 1680);
+      }
      }
      
      limit+= 80;
@@ -150,16 +162,36 @@ void draw() {
     for(int y = 880; y < 1520; y += 80){
      int c = index / 80;
      if((c == 0) || (c ==3)){
-      image(stone1,80, y-hogY);
-      image(stone1,160, y-hogY);
-      image(stone1,400, y-hogY);
-      image(stone1,480, y-hogY);
+       if(hogY < 1680)
+       {
+        image(stone1,80, y-hogY);
+        image(stone1,160, y-hogY);
+        image(stone1,400, y-hogY);
+        image(stone1,480, y-hogY);
+       }
+       else
+       {
+         image(stone1,80, y-1680);
+        image(stone1,160, y-1680);
+        image(stone1,400, y-1680);
+        image(stone1,480, y-1680);
+       }
      }
      else if((c == 1) || (c ==2)){
-      image(stone1,0, y-hogY);
-      image(stone1,240, y-hogY);
-      image(stone1,320, y-hogY);
-      image(stone1,560, y-hogY);
+       if(hogY < 1680)
+       {
+        image(stone1,0, y-hogY);
+        image(stone1,240, y-hogY);
+        image(stone1,320, y-hogY);
+        image(stone1,560, y-hogY);
+       }
+       else
+       {
+        image(stone1,0, y-1680);
+        image(stone1,240, y-1680);
+        image(stone1,320, y-1680);
+        image(stone1,560, y-1680);
+       }
      }
     
      if(c == 3)
@@ -172,35 +204,79 @@ void draw() {
     int x3=0;
     for(int y = 1520; y <= 2080; y += 80){
      int c = x3 / 80;
-     if(c == 0){
-      image(stone1,80, y-hogY);
-      image(stone1,160, y-hogY);
-      image(stone1,320, y-hogY);
-      image(stone1,400, y-hogY);
-      image(stone1,560, y-hogY);
-      image(stone2,160, y-hogY);
-      image(stone2,400, y-hogY);
+     if(c == 0)
+     {
+       if(hogY < 1680)
+       {
+         image(stone1,80, y-hogY);
+         image(stone1,160, y-hogY);
+         image(stone1,320, y-hogY);
+         image(stone1,400, y-hogY);
+         image(stone1,560, y-hogY);
+         image(stone2,160, y-hogY);
+         image(stone2,400, y-hogY);
+       }
+       else
+       {
+         image(stone1,80, y-1680);
+         image(stone1,160, y-1680);
+         image(stone1,320, y-1680);
+         image(stone1,400, y-1680);
+         image(stone1,560, y-1680);
+         image(stone2,160, y-1680);
+         image(stone2,400, y-1680);
+       }
+       
      }
      else if(c == 1){
-      image(stone1,0, y-hogY);
-      image(stone1,80, y-hogY);
-      image(stone1,240, y-hogY);
-      image(stone1,320, y-hogY);
-      image(stone1,480, y-hogY);
-      image(stone1,560, y-hogY);
-      image(stone2,80, y-hogY);
-      image(stone2,320, y-hogY);
-      image(stone2,560, y-hogY);
+       if(hogY < 1680)
+       {
+          image(stone1,0, y-hogY);
+          image(stone1,80, y-hogY);
+          image(stone1,240, y-hogY);
+          image(stone1,320, y-hogY);
+          image(stone1,480, y-hogY);
+          image(stone1,560, y-hogY);
+          image(stone2,80, y-hogY);
+          image(stone2,320, y-hogY);
+          image(stone2,560, y-hogY);
+       }
+       else
+       {
+          image(stone1,0, y-1680);
+          image(stone1,80, y-1680);
+          image(stone1,240, y-1680);
+          image(stone1,320, y-1680);
+          image(stone1,480, y-1680);
+          image(stone1,560, y-1680);
+          image(stone2,80, y-1680);
+          image(stone2,320, y-1680);
+          image(stone2,560, y-1680);
+       }
      }
      else if(c == 2){
-      image(stone1,0, y-hogY);
-      image(stone1,160, y-hogY);
-      image(stone1,240, y-hogY);
-      image(stone1,400, y-hogY);
-      image(stone1,480, y-hogY);
-      image(stone2,0, y-hogY);
-      image(stone2,240, y-hogY);
-      image(stone2,480, y-hogY);
+       if(hogY < 1680)
+       {
+        image(stone1,0, y-hogY);
+        image(stone1,160, y-hogY);
+        image(stone1,240, y-hogY);
+        image(stone1,400, y-hogY);
+        image(stone1,480, y-hogY);
+        image(stone2,0, y-hogY);
+        image(stone2,240, y-hogY);
+        image(stone2,480, y-hogY);
+       }
+       else
+       {
+        image(stone1,0, y-1680);
+        image(stone1,160, y-1680);
+        image(stone1,240, y-1680);
+        image(stone1,400, y-1680);
+        image(stone1,480, y-1680);
+        image(stone2,0, y-1680);
+        image(stone2,240, y-1680);
+        image(stone2,480, y-1680);
+       }
      }
     
      if(c == 2){
@@ -209,87 +285,141 @@ void draw() {
      else{
       x3 += 80;
      }
+     
     }
      
       
   		// Player
-      if(idle){
-        image(groundhogIdle, hogX, 80);
+
+      if(idle)
+      { 
+        if(hogY < 1680)
+          image(groundhogIdle, hogX, 80);
+        else
+        {
+          image(groundhogIdle, hogX, hogMoveY);
+        }
       }
+      
          idle=true;
-      if(right){
+         
+      if(right)
+      {
         image(groundhogRight, hogX, 80);
       }
          
-      if(left){
+      if(left)
+      {
         image(groundhogLeft, hogX, 80);
+      }
+      if(down)
+      {
+        image(groundhogDown, hogX, 80);
       }
     
       
-        if(downPressed){
-          idle=false;
-          leftPressed=false;
-          rightPressed=false;
-          downPressed2=false;
+      if(downPressed)
+      { 
+        idle=false; leftPressed=false; rightPressed=false;
+        
+        
+        if(hogY < 1680)
+        {
           hogY += hogSpeed;
           image(groundhogDown, hogX, 80);
-         }
-      
-      if(hogY + imgSize >= 2080){
-        hogY = 2000;
-        idle=true;
-        downPressed=false;
-      }  
-      for(int i=1; i<=24; i++){
-      if(hogY == soilSize*i){
-        downPressed=false;
-      } 
+          idle=false;
+        }
+        else
+        {
+           image(groundhogDown, hogX, hogMoveY);
+           hogMoveY += hogSpeed;
+        }
       }
       
       
-              
-      if(leftPressed){
-         idle=false;
-         right=false;
-         rightPressed=false;
-         downPressed=false;
-         hogX -= hogSpeed;
-         image(groundhogLeft, hogX, hogY);
+      if(hogMoveY >= 400)
+      {
+        hogMoveY = 400;
+        idle = true; downPressed = false;
+      }  
+      
+      for(int i=1; i<=24; i++)
+      {
+        if (hogY < 1680)
+        {
+            if(hogY == soilSize*i)
+              downPressed=false;  
+        }
+        else if(hogY == 1680)
+         {
+             if((hogMoveY )== (soilSize*i - 1600))
+              downPressed=false;  
+           
+         }
+        
+      }
+      
+             
+      if(leftPressed)
+      {
+         idle=false; right=false; down=false; 
          
-       }    
-        if(hogX <= 0){ 
-         leftPressed=false;
-         hogX = 0;
-         idle=true;
-          }
+        if(hogY < 1680)
+         {
+           hogX -= hogSpeed;
+           image(groundhogLeft, hogX, 80);
+         }    
+         else
+         {
+           image(groundhogLeft, hogX, hogMoveY);
+           hogX -= hogSpeed;
+       }
+      }
+       if(hogX < 0)
+       { 
+       leftPressed=false;
+       hogX = 0;
+       idle=true;
+       }
+       
         if(hogX == soilSize || hogX == soilSize*2 || hogX == soilSize*3 
-        || hogX == soilSize*4 || hogX == soilSize*5 || hogX == soilSize*6){
-          leftPressed=false;
-          
+        || hogX == soilSize*4 || hogX == soilSize*5 || hogX == soilSize*6)
+        {
+          leftPressed = false;
         }
            
            
-     if(rightPressed){
-        idle=false;
-         left=false;
-         leftPressed=false;
-         downPressed=false;
+     if(rightPressed)
+     {
+       idle=false; left=false; down=false; leftPressed=false; downPressed=false;  
+       
+       if(hogY < 1680)
+       {
          hogX += hogSpeed;
-         image(groundhogRight, hogX, hogY);
+         image(groundhogRight, hogX, 80);
+       }
+       else
+       {
+         image(groundhogRight, hogX, hogMoveY);
+         hogX += hogSpeed;
+       }
          
      }
-        if(hogX + imgSize > width) {
+     
+     if(hogX + imgSize > width) 
+     {
          hogX = width - imgSize;
          rightPressed=false;
          idle=true;
          right=false;
-       }
-       
-       if(hogX == soilSize || hogX == soilSize*2 || hogX == soilSize*3 
-       || hogX == soilSize*4 || hogX == soilSize*5 || hogX == soilSize*6){ 
-         rightPressed=false; 
-       }
-         
+     }
+     
+     if(hogX == soilSize || hogX == soilSize*2 || hogX == soilSize*3 
+     || hogX == soilSize*4 || hogX == soilSize*5 || hogX == soilSize*6)
+     { 
+       rightPressed=false; 
+     }
+        
 		// Health UI
     
     for (int i=0; i<playerHealth; i++){
@@ -298,7 +428,7 @@ void draw() {
         image(life,10+(i*70),10);
       
     }
-      if(i<=0){
+      if(playerHealth<=0){
        gameState = GAME_OVER;
        }
 
@@ -315,8 +445,11 @@ void draw() {
 			image(restartHovered, START_BUTTON_X, START_BUTTON_Y);
 			if(mousePressed){
 				gameState = GAME_RUN;
-				mousePressed = false;
+				//mousePressed = false;
 				// Remember to initialize the game here!
+        hogX=soilSize*4;
+        hogY = 80;
+        playerHealth=2;
 			}
 		}else{
 
@@ -339,12 +472,18 @@ void keyPressed(){
   switch(keyCode){
     case DOWN:
     downPressed = true;
+    rightPressed = false;
+    leftPressed = false;
     break;
     case RIGHT:
     rightPressed = true;
+    downPressed = false;
+    leftPressed = false;
     break;
     case LEFT:
     leftPressed = true;
+    downPressed = false;
+    rightPressed = false;
     break;
   }
   }
