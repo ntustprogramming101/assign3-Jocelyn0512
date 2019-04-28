@@ -11,7 +11,7 @@ float hogMoveY = 80;
 
 int lifes =2;
 
-boolean downPressed, downPressed2, rightPressed, leftPressed, idle, right, left, down;
+boolean downPressed, rightPressed, leftPressed, idle, right, left, down;
 
 final int GRASS_HEIGHT = 15;
 final int START_BUTTON_W = 144;
