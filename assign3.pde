@@ -472,6 +472,12 @@ void keyPressed(){
   switch(keyCode){
     case DOWN:
     downPressed = true;
+    if (rightPressed) {
+    downPressed=false;
+    }
+    if (leftPressed) {
+    downPressed=false;
+    }
     break;
     case RIGHT:
     rightPressed = true;
